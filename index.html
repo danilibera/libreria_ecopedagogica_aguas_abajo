@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Librería Online</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; text-align: center; }
+        header { background-color: #333; color: white; padding: 20px; }
+        header img { height: 50px; }
+        .producto { display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+        .producto img { width: 150px; height: 200px; margin-right: 10px; cursor: pointer; }
+        .carrito, .formulario { margin-top: 20px; border-top: 2px solid #000; padding-top: 10px; }
+        footer { margin-top: 20px; background-color: #333; color: white; padding: 10px; }
+    </style>
+</head>
+<body>
+
+    <!-- Banner con logo -->
+    <header>
+        <img src="logo.png" alt="Logo Librería">
+        <h1>Librería Online</h1>
+    </header>
+
+    <!-- Productos -->
+    <div id="productos">
+        <div class="producto">
+            <a href="libro1.html">
+                <img src="portada_libro1.jpg" alt="Portada Libro 1">
+            </a>
+            <span>Libro 1 - $10</span>
+            <button onclick="agregarAlCarrito('Libro 1', 10)">Añadir</button>
+        </div>
+
+        <div class="producto">
+            <a href="libro2.html">
+                <img src="portada_libro2.jpg" alt="Portada Libro 2">
+            </a>
+            <span>Libro 2 - $15</span>
+            <button onclick="agregarAlCarrito('Libro 2', 15)">Añadir</button>
+        </div>
+    </div>
+
+    <!-- Carrito -->
+    <div class="carrito">
+        <h2>Carrito de Compras</h2>
+        <ul id="listaCarrito"></ul>
+        <p>Total: $<span id="total">0</span></p>
+    </div>
+
+    <!-- Formulario de Contacto -->
+    <div class="formulario">
+        <h2>Formulario de Contacto</h2>
+        <form action="https://formsubmit.co/dcolleoniv@gmail.com" method="POST">
+            <input type="hidden" name="_next" value="gracias.html"> <!-- Redirige a la página de agradecimiento -->
+            <input type="hidden" name="_captcha" value="false"> <!-- Desactiva el captcha automático -->
+
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="mensaje">Mensaje:</label><br>
+            <textarea id="mensaje" name="mensaje" rows="4" required></textarea><br><br>
+
+            <button type="submit">Enviar Pedido</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Librería Online - Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        let carrito = [];
+        let total = 0;
+
+        function agregarAlCarrito(nombre, precio) {
+            carrito.push({ nombre, precio });
+            total += precio;
+            actualizarCarrito();
+        }
+
+        function actualizarCarrito() {
+            let lista = document.getElementById("listaCarrito");
+            let totalElemento = document.getElementById("total");
+
+            if (!lista || !totalElemento) {
+                console.error("Elementos del carrito no encontrados.");
+                return;
+            }
+
+            lista.innerHTML = "";
+            carrito.forEach(item => {
+                let li = document.createElement("li");
+                li.textContent = `${item.nombre} - $${item.precio}`;
+                lista.appendChild(li);
+            });
+
+            totalElemento.textContent = total;
+        }
+    </script>
+
+</body>
+</html>
