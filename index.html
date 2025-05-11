@@ -62,8 +62,7 @@
             <input type="email" id="email" name="email" required><br><br>
 
             <label for="resumen">Resumen del Pedido:</label><br>
-            <textarea id="resumen" name="mensaje" rows="8" style="width: 50%; height: 150px;" readonly></textarea>
-<br><br>
+            <textarea id="resumen" name="mensaje" rows="8" style="width: 100%; height: 150px;" readonly></textarea><br><br>
 
             <button type="submit">Enviar Pedido</button>
         </form>
@@ -83,70 +82,68 @@
         <p>&copy; 2025 Librería Online - Todos los derechos reservados.</p>
     </footer>
 
-  <script>
-    let carrito = [];
-    let total = 0;
+    <script>
+        let carrito = [];
+        let total = 0;
 
-    function agregarAlCarrito(nombre, precio) {
-        let libroExistente = carrito.find(item => item.nombre === nombre);
+        function agregarAlCarrito(nombre, precio) {
+            let libroExistente = carrito.find(item => item.nombre === nombre);
 
-        if (libroExistente) {
-            libroExistente.cantidad += 1; // Incrementa la cantidad del mismo libro
-        } else {
-            carrito.push({ nombre, precio, cantidad: 1 }); // Agrega el libro con cantidad inicial
-        }
+            if (libroExistente) {
+                libroExistente.cantidad += 1; // Incrementa la cantidad del mismo libro
+            } else {
+                carrito.push({ nombre, precio, cantidad: 1 }); // Agrega el libro con cantidad inicial
+            }
 
-        total += precio;
-        actualizarCarrito();
-    }
-
-    function actualizarCarrito() {
-        let lista = document.getElementById("listaCarrito");
-        let totalElemento = document.getElementById("total");
-        let resumenPedido = document.getElementById("resumen");
-
-        if (!lista || !totalElemento || !resumenPedido) {
-            console.error("Elementos del carrito no encontrados.");
-            return;
-        }
-
-        lista.innerHTML = "";
-        let resumenTexto = "Resumen del Pedido:\n";
-
-        carrito.forEach(item => {
-            let li = document.createElement("li");
-            li.textContent = `${item.nombre} x${item.cantidad} - $${item.precio * item.cantidad}`;
-            lista.appendChild(li);
-            resumenTexto += `${item.nombre} x${item.cantidad} - $${item.precio * item.cantidad}\n`;
-        });
-
-        totalElemento.textContent = total;
-        resumenTexto += `\nTotal: $${total}`;
-        resumenPedido.value = resumenTexto;
-    }
-
-    document.getElementById("formularioContacto").addEventListener("submit", function(event) {
-        event.preventDefault();
-
-        fetch("https://formsubmit.co/dcolleoniv@gmail.com", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams(new FormData(this))
-        }).then(response => {
-            document.getElementById("formularioContacto").style.display = "none";
-            document.getElementById("mensajeGracias").style.display = "block";
-
-            // Reiniciar carrito después de enviar el pedido
-            carrito = [];
-            total = 0;
+            total += precio;
             actualizarCarrito();
-        }).catch(error => {
-            alert("Hubo un error al enviar el pedido, intenta nuevamente.");
+        }
+
+        function actualizarCarrito() {
+            let lista = document.getElementById("listaCarrito");
+            let totalElemento = document.getElementById("total");
+            let resumenPedido = document.getElementById("resumen");
+
+            if (!lista || !totalElemento || !resumenPedido) {
+                console.error("Elementos del carrito no encontrados.");
+                return;
+            }
+
+            lista.innerHTML = "";
+            let resumenTexto = "Resumen del Pedido:\n";
+
+            carrito.forEach(item => {
+                let li = document.createElement("li");
+                li.textContent = `${item.nombre} x${item.cantidad} - $${item.precio * item.cantidad}`;
+                lista.appendChild(li);
+                resumenTexto += `${item.nombre} x${item.cantidad} - $${item.precio * item.cantidad}\n`;
+            });
+
+            totalElemento.textContent = total;
+            resumenTexto += `\nTotal: $${total}`;
+            resumenPedido.value = resumenTexto;
+        }
+
+        document.getElementById("formularioContacto").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            fetch("https://formsubmit.co/dcolleoniv@gmail.com", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams(new FormData(this))
+            }).then(response => {
+                document.getElementById("formularioContacto").style.display = "none";
+                document.getElementById("mensajeGracias").style.display = "block";
+
+                // 🆕 Reiniciar carrito después de enviar el pedido
+                carrito = [];
+                total = 0;
+                actualizarCarrito();
+            }).catch(error => {
+                alert("Hubo un error al enviar el pedido, intenta nuevamente.");
+            });
         });
-    });
-</script>
-
-
+    </script>
 
 </body>
 </html>
