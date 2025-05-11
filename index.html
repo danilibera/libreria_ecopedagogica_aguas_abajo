@@ -129,8 +129,9 @@
         event.preventDefault();
 
         fetch("https://formsubmit.co/dcolleoniv@gmail.com", {
-            method: "POST",
-            body: new FormData(this)
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams(new FormData(this))
         }).then(response => {
             document.getElementById("formularioContacto").style.display = "none";
             document.getElementById("mensajeGracias").style.display = "block";
