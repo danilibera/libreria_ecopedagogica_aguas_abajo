@@ -83,12 +83,19 @@
         <p>&copy; 2025 Librería Online - Todos los derechos reservados.</p>
     </footer>
 
-   <script>
+  <script>
     let carrito = [];
     let total = 0;
 
     function agregarAlCarrito(nombre, precio) {
-        carrito.push({ nombre, precio });
+        let libroExistente = carrito.find(item => item.nombre === nombre);
+
+        if (libroExistente) {
+            libroExistente.cantidad += 1; // Incrementa la cantidad del mismo libro
+        } else {
+            carrito.push({ nombre, precio, cantidad: 1 }); // Agrega el libro con cantidad inicial
+        }
+
         total += precio;
         actualizarCarrito();
     }
@@ -108,9 +115,9 @@
 
         carrito.forEach(item => {
             let li = document.createElement("li");
-            li.textContent = `${item.nombre} - $${item.precio}`;
+            li.textContent = `${item.nombre} x${item.cantidad} - $${item.precio * item.cantidad}`;
             lista.appendChild(li);
-            resumenTexto += `${item.nombre} - $${item.precio}\n`;
+            resumenTexto += `${item.nombre} x${item.cantidad} - $${item.precio * item.cantidad}\n`;
         });
 
         totalElemento.textContent = total;
@@ -128,7 +135,7 @@
             document.getElementById("formularioContacto").style.display = "none";
             document.getElementById("mensajeGracias").style.display = "block";
 
-            // 🆕 Reiniciar carrito de compras después de enviar el pedido
+            // Reiniciar carrito después de enviar el pedido
             carrito = [];
             total = 0;
             actualizarCarrito();
@@ -137,6 +144,7 @@
         });
     });
 </script>
+
 
 
 </body>
