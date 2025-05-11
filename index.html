@@ -11,7 +11,10 @@
         .producto { display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
         .producto img { width: 150px; height: 200px; margin-right: 10px; cursor: pointer; }
         .carrito, .formulario { margin-top: 20px; border-top: 2px solid #000; padding-top: 10px; }
+        #mensajeGracias { display: none; background-color: #f4f4f4; padding: 20px; border-radius: 10px; }
         footer { margin-top: 20px; background-color: #333; color: white; padding: 10px; }
+        button { background-color: #333; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px; }
+        button:hover { background-color: #555; }
     </style>
 </head>
 <body>
@@ -51,23 +54,27 @@
     <!-- Formulario de Contacto -->
     <div class="formulario">
         <h2>Formulario de Contacto</h2>
-        <form action="https://formsubmit.co/dcolleoniv@gmail.com" method="POST">
-    <input type="hidden" name="_next" value="https://danilibera.github.io/libreria_virtual/gracias.html">
- <!-- Redirección a página de agradecimiento -->
-    <input type="hidden" name="_captcha" value="false"> <!-- Desactiva el captcha automático -->
+        <form id="formularioContacto">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required><br><br>
 
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" required><br><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required><br><br>
+            <label for="mensaje">Mensaje:</label><br>
+            <textarea id="mensaje" name="mensaje" rows="4" required></textarea><br><br>
 
-    <label for="mensaje">Mensaje:</label><br>
-    <textarea id="mensaje" name="mensaje" rows="4" required></textarea><br><br>
+            <button type="submit">Enviar Pedido</button>
+        </form>
 
-    <button type="submit">Enviar Pedido</button>
-</form>
-
+        <!-- Mensaje de agradecimiento oculto inicialmente -->
+        <div id="mensajeGracias">
+            <h2>¡Gracias por tu pedido!</h2>
+            <p>Hemos recibido tu solicitud y nos pondremos en contacto contigo lo antes posible.</p>
+            <p>Revisa tu correo para más detalles sobre el pago y el envío.</p>
+            <br>
+            <button onclick="window.location.reload();">Volver a la tienda</button>
+        </div>
     </div>
 
     <!-- Footer -->
@@ -103,6 +110,22 @@
 
             totalElemento.textContent = total;
         }
+
+        document.getElementById("formularioContacto").addEventListener("submit", function(event) {
+            event.preventDefault(); // Evita que la página se recargue
+
+            // Envía los datos del formulario a FormSubmit
+            fetch("https://formsubmit.co/tucorreo@example.com", {
+                method: "POST",
+                body: new FormData(this)
+            }).then(response => {
+                // Oculta el formulario y muestra el mensaje de agradecimiento
+                document.getElementById("formularioContacto").style.display = "none";
+                document.getElementById("mensajeGracias").style.display = "block";
+            }).catch(error => {
+                alert("Hubo un error al enviar el pedido, intenta nuevamente.");
+            });
+        });
     </script>
 
 </body>
