@@ -61,8 +61,8 @@
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required><br><br>
 
-            <label for="mensaje">Mensaje:</label><br>
-            <textarea id="mensaje" name="mensaje" rows="4" required></textarea><br><br>
+            <label for="resumen">Resumen del Pedido:</label><br>
+            <textarea id="resumen" name="resumen" rows="4" readonly></textarea><br><br>
 
             <button type="submit">Enviar Pedido</button>
         </form>
@@ -95,31 +95,35 @@
         function actualizarCarrito() {
             let lista = document.getElementById("listaCarrito");
             let totalElemento = document.getElementById("total");
+            let resumenPedido = document.getElementById("resumen");
 
-            if (!lista || !totalElemento) {
+            if (!lista || !totalElemento || !resumenPedido) {
                 console.error("Elementos del carrito no encontrados.");
                 return;
             }
 
             lista.innerHTML = "";
+            let resumenTexto = "Resumen del Pedido:\n";
+
             carrito.forEach(item => {
                 let li = document.createElement("li");
                 li.textContent = `${item.nombre} - $${item.precio}`;
                 lista.appendChild(li);
+                resumenTexto += `${item.nombre} - $${item.precio}\n`;
             });
 
             totalElemento.textContent = total;
+            resumenTexto += `Total: $${total}`;
+            resumenPedido.value = resumenTexto;
         }
 
         document.getElementById("formularioContacto").addEventListener("submit", function(event) {
-            event.preventDefault(); // Evita que la página se recargue
+            event.preventDefault();
 
-            // Envía los datos del formulario a FormSubmit
-            fetch("https://formsubmit.co/tucorreo@example.com", {
+            fetch("https://formsubmit.co/dcolleoniv@gmail.com", {
                 method: "POST",
                 body: new FormData(this)
             }).then(response => {
-                // Oculta el formulario y muestra el mensaje de agradecimiento
                 document.getElementById("formularioContacto").style.display = "none";
                 document.getElementById("mensajeGracias").style.display = "block";
             }).catch(error => {
