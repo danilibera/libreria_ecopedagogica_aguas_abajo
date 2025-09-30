@@ -261,7 +261,7 @@
 
         carrito.forEach(item => {
             let li = document.createElement("li");
-            li.textContent = `${item.nombre} - ${item.precio} (Cantidad: ${item.cantidad})    `;
+            li.textContent = `<p>${item.nombre} </p><p>${item.precio} </p>(Cantidad: ${item.cantidad})    `;
             
             let botonEliminar = document.createElement("button");
             botonEliminar.textContent = "Eliminar";
