@@ -192,7 +192,8 @@
         <input type="hidden" name="_next" value="gracias.html">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="carrito" id="carrito"> <!-- Campo oculto para el carrito -->
-
+		<input type="hidden" id="totalPedido" name="totalPedido">
+		
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre" required><br><br>
 
@@ -282,7 +283,10 @@
         // Actualizar el campo oculto del formulario con el contenido del carrito en formato de texto
         const carritoTexto = carrito.map(item => `${item.nombre} - ${item.precio} (Cantidad: ${item.cantidad})`).join(', ');
         document.getElementById("carrito").value = carritoTexto;
-    }
+        
+        // Actualizar el campo oculto del total
+		document.getElementById("totalPedido").value = total; 
+}
 </script>
 
 
