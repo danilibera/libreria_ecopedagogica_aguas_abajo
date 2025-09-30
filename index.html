@@ -8,9 +8,10 @@
         body { font-family: Atkinson Hyperlegible, sans-serif; margin: 20px; text-align: center; }
         header { background-color: #333; color: white; padding: 20px; }
         header img { height: 100px; }
+        footer img { height: 100px; }
         .productos { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; margin-bottom: 10px; }
         .producto img { width: 150px; height: 200px; margin-right: 10px; cursor: pointer; }
-        .carrito, .formulario {line-height: 1.5;text-align: right; margin-top: 20px; border-top: 2px solid #000; border-bottom: 2px solid #000; padding-bottom: 20px; padding-top: 10px; padding-right: 50px; }
+        .carrito, .formulario {line-height: 1.5;text-align: right; margin-top: 20px; border-top: 2px solid #000; border-bottom: 2px solid #000; padding-bottom: 20px; padding-top: 10px; padding-right: 50px; padding-left: 50px; }
         footer { margin-top: 20px; background-color: #333; color: white; padding: 10px; }
         h1 {font-family: Atkinson Hyperlegible, sans-serif; margin: 20px; text-align: center; font-size: xx-large;}
         button { background-color: #333; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px; }
@@ -31,7 +32,7 @@
     <!-- Carrito -->
     <div class="carrito">
         <h2>Carrito de Compras</h2>
-        <ul style="list-style-type:none; line-height: 3; background: hsl(200, 30%, 80%); 
+        <ul style="list-style-type:none; line-height: 3; background: hsl(150, 30%, 80%); 
         padding: 20px;"id="listaCarrito"></ul>
         <p>Total: <h3>$<span id="total">0</span><h3></p>
         <button onclick="scrollToContacto()">Realizar pedido</button>
@@ -186,7 +187,7 @@
         <input type="hidden" name="_next" value="gracias.html">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="carrito" id="carrito"> <!-- Campo oculto para el carrito -->
-		<input type="hidden" id="totalPedido" name="totalPedido">
+		<input type="hidden" id="totalPedido" name="totalPedido"> <!-- Campo oculto para el total -->
 		
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre" required><br><br>
@@ -208,7 +209,8 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Librería Online - Todos los derechos reservados.</p>
+        <p>2025</p>
+        <img src="agua_sabajo_logo.png" alt="Logo Librería">
     </footer>
     
 <script>
@@ -242,7 +244,7 @@
             actualizarCarrito();
         }
     }
-
+    
     function actualizarCarrito() {
         let lista = document.getElementById("listaCarrito");
         let totalElemento = document.getElementById("total");
@@ -282,7 +284,6 @@
 		document.getElementById("totalPedido").value = total; 
 }
 </script>
-
 
 <script>
         function scrollToContacto() {
