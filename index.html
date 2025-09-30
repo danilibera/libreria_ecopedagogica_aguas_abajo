@@ -277,7 +277,7 @@
         totalElemento.textContent = total; // Actualiza el total en la interfaz
 
         // Actualizar el campo oculto del formulario con el contenido del carrito en formato de texto
-        const carritoTexto = carrito.map(item => `${item.nombre} - ${item.precio} (Cantidad: ${item.cantidad})`).join('<br>');
+        const carritoTexto = carrito.map(item => `${item.nombre} - <strong>${item.precio}</strong> (Cantidad: ${item.cantidad})`).join('<br>');
         document.getElementById("carrito").value = carritoTexto;
         
         // Actualizar el campo oculto del total
