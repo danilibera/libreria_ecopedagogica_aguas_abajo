@@ -10,7 +10,7 @@
         header img { height: 100px; }
         .producto { display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
         .producto img { width: 150px; height: 200px; margin-right: 10px; cursor: pointer; }
-        .carrito, .formulario { margin-top: 20px; border-top: 2px solid #000; padding-top: 10px; }
+        .carrito, .formulario { text-align: right; margin-top: 20px; border-top: 2px solid #000; border-bottom: 2px solid #000; padding-bottom: 20px; padding-top: 10px; padding-right: 50px; }
         footer { margin-top: 20px; background-color: #333; color: white; padding: 10px; }
         h1 {font-family: Atkinson Hyperlegible, sans-serif; margin: 20px; text-align: center; font-size: xx-large;}
         button { background-color: #333; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px; }
@@ -27,6 +27,14 @@
         <img src="agua_sabajo_logo.png" alt="Logo Librería">
         <h1>Librería Ecopedagógica Aguas Abajo</h1>
     </header>
+    
+    <!-- Carrito -->
+    <div class="carrito">
+        <h2>Carrito de Compras</h2>
+        <ul id="listaCarrito"></ul>
+        <p>Total: $<span id="total">0</span></p>
+        <button onclick="scrollToContacto()">Realizar pedido</button>
+    </div>
 
     <!-- Productos -->
     <div id="productos">
@@ -58,7 +66,7 @@
         margin: 10px 0; /* Espacio entre el título y el botón */
     }
     .carrito{
-		text-align: right;
+		
 	}
 	</style>
 	
@@ -174,15 +182,9 @@
     <!-- FIN -->
     
 	</div>
-	
-    <!-- Carrito -->
-    <div class="carrito">
-        <h2>Carrito de Compras</h2>
-        <ul id="listaCarrito"></ul>
-        <p>Total: $<span id="total">0</span></p>
-    </div>
 
     <!-- Formulario de Contacto -->
+<div id="contacto">
 <div class="formulario">
     <h2>Formulario de Contacto</h2>
     <form action="https://formsubmit.co/dcolleoniv@gmail.com" method="POST">
@@ -279,6 +281,14 @@
         const carritoTexto = carrito.map(item => `${item.nombre} - ${item.precio} (Cantidad: ${item.cantidad})`).join(', ');
         document.getElementById("carrito").value = carritoTexto;
     }
+</script>
+
+
+<script>
+        function scrollToContacto() {
+            const contactoDiv = document.getElementById('contacto');
+            contactoDiv.scrollIntoView({ behavior: 'smooth' });
+        }
 </script>
 
 </body>
