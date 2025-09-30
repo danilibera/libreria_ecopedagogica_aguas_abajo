@@ -183,23 +183,28 @@
     </div>
 
     <!-- Formulario de Contacto -->
-    <div class="formulario">
-        <h2>Formulario de Contacto</h2>
-        <form action="https://formsubmit.co/dcolleoniv@gmail.com" method="POST">
-    <input type="hidden" name="_next" value="gracias.html"> <!-- Redirección a página de agradecimiento -->
-    <input type="hidden" name="_captcha" value="false"> <!-- Desactiva el captcha automático -->
+<div class="formulario">
+    <h2>Formulario de Contacto</h2>
+    <form action="https://formsubmit.co/dcolleoniv@gmail.com" method="POST">
+        <input type="hidden" name="_next" value="gracias.html">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="carrito" id="carrito"> <!-- Campo oculto para el carrito -->
 
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" required><br><br>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required><br><br>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
 
-    <label for="mensaje">Mensaje:</label><br>
-    <textarea id="mensaje" name="mensaje" rows="4" required></textarea><br><br>
+        <label for="mensaje">Mensaje:</label><br>
+        <textarea id="mensaje" name="mensaje" rows="4" required></textarea><br><br>
 
-    <button type="submit">Enviar Pedido</button>
-</form>
+        <h3>Detalles del Pedido:</h3>
+        <div id="detallesPedido"></div> <!-- Contenedor para mostrar los detalles del pedido -->
+
+        <button type="submit">Enviar Pedido</button>
+    </form>
+</div>
 
     </div>
 
@@ -213,15 +218,12 @@
     let total = 0;
 
     function agregarAlCarrito(nombre, precio) {
-        // Verificar si el producto ya está en el carrito
         const itemExistente = carrito.find(item => item.nombre === nombre);
         
         if (itemExistente) {
-            // Si existe, incrementar la cantidad y el total
             itemExistente.cantidad++;
             total += precio;
         } else {
-            // Si no existe, agregarlo al carrito
             carrito.push({ nombre, precio, cantidad: 1 });
             total += precio;
         }
@@ -229,17 +231,15 @@
     }
 
     function eliminarDelCarrito(nombre) {
-        // Buscar el producto en el carrito
         const itemIndex = carrito.findIndex(item => item.nombre === nombre);
         
         if (itemIndex !== -1) {
-            // Reducir la cantidad o eliminar el producto
             if (carrito[itemIndex].cantidad > 1) {
                 carrito[itemIndex].cantidad--;
                 total -= carrito[itemIndex].precio;
             } else {
                 total -= carrito[itemIndex].precio;
-                carrito.splice(itemIndex, 1); // Eliminar el producto
+                carrito.splice(itemIndex, 1);
             }
             actualizarCarrito();
         }
@@ -248,27 +248,36 @@
     function actualizarCarrito() {
         let lista = document.getElementById("listaCarrito");
         let totalElemento = document.getElementById("total");
+        let detallesPedido = document.getElementById("detallesPedido");
 
-        if (!lista || !totalElemento) {
+        if (!lista || !totalElemento || !detallesPedido) {
             console.error("Elementos del carrito no encontrados.");
             return;
         }
 
         lista.innerHTML = "";
+        detallesPedido.innerHTML = ""; // Limpiar el contenedor de detalles del pedido
+
         carrito.forEach(item => {
             let li = document.createElement("li");
             li.textContent = `${item.nombre} - ${item.precio} (Cantidad: ${item.cantidad})`;
             
-            // Crear botón de eliminar
             let botonEliminar = document.createElement("button");
             botonEliminar.textContent = "Eliminar";
             botonEliminar.onclick = () => eliminarDelCarrito(item.nombre);
             li.appendChild(botonEliminar);
             
             lista.appendChild(li);
+
+            // Agregar detalles al contenedor del formulario
+            detallesPedido.innerHTML += `${item.nombre} - ${item.precio} (Cantidad: ${item.cantidad})<br>`;
         });
 
         totalElemento.textContent = total;
+
+        // Actualizar el campo oculto del formulario con el contenido del carrito en formato de texto
+        const carritoTexto = carrito.map(item => `${item.nombre} - ${item.precio} (Cantidad: ${item.cantidad})`).join(', ');
+        document.getElementById("carrito").value = carritoTexto;
     }
 </script>
 
