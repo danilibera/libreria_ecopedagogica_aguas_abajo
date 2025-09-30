@@ -8,7 +8,7 @@
         body { font-family: Atkinson Hyperlegible, sans-serif; margin: 20px; text-align: center; }
         header { background-color: #333; color: white; padding: 20px; }
         header img { height: 100px; }
-        .productos { display: flex; flex-wrap: wrap; justify-content: space-between; border: 1px solid #ccc; border-radius: 5px; align-items: center; margin-bottom: 10px; }
+        .productos { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; margin-bottom: 10px; }
         .producto img { width: 150px; height: 200px; margin-right: 10px; cursor: pointer; }
         .carrito, .formulario {line-height: 1.5;text-align: right; margin-top: 20px; border-top: 2px solid #000; border-bottom: 2px solid #000; padding-bottom: 20px; padding-top: 10px; padding-right: 50px; }
         footer { margin-top: 20px; background-color: #333; color: white; padding: 10px; }
@@ -31,7 +31,7 @@
     <!-- Carrito -->
     <div class="carrito">
         <h2>Carrito de Compras</h2>
-        <ul style="list-style-type:none; line-height: 3; background: powderblue; 
+        <ul style="list-style-type:none; line-height: 3; background: hsl(200, 30%, 80%); 
         padding: 20px;"id="listaCarrito"></ul>
         <p>Total: <h3>$<span id="total">0</span><h3></p>
         <button onclick="scrollToContacto()">Realizar pedido</button>
