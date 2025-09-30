@@ -13,6 +13,22 @@ os.makedirs('catálogo', exist_ok=True)
 
 # Generar las páginas HTML
 for index, fila in df.iterrows():
+    # Manejo de ISBN
+    isbn_value = fila['ISBN']
+    if pd.isna(isbn_value):
+        display_isbn = "No disponible"  # O cualquier valor que desees mostrar
+    else:
+        display_isbn = str(int(isbn_value))  # Convertir a entero y luego a string
+
+    # Manejo de AÑO
+    año_value = fila['AÑO']
+    if pd.isna(año_value):
+        display_año = "No disponible"  # O cualquier valor que desees mostrar
+    else:
+        display_año = str(int(año_value))  # Convertir a entero y luego a string
+
+    print(f"Fila {index}: ISBN={isbn_value}, AÑO={año_value}")
+    
     html_content = f"""
     <html>
     <head>
@@ -40,28 +56,29 @@ for index, fila in df.iterrows():
         </style>
     </head>
     <body>
-		<img src="../img/{fila['TÍTULO'].replace(" ", "_")}.jpg" width="300">
+        <img src="../img/{fila['TÍTULO'].replace(" ", "_")}.jpg" width="300">
         <h1>{fila['TÍTULO']}</h1>
         <div class="info">
             <p><strong>Autor:</strong> {fila['AUTOR']}</p>
-            <p><strong>Año:</strong> {fila['AÑO']}</p>
-            <p><strong>ISBN:</strong> {fila['ISBN']}</p>
+            <p><strong>Año:</strong> {año_value}</p> 
+            <p><strong>ISBN:</strong> {isbn_value}</p>
             <p><strong>Editorial:</strong> {fila['EDITORIAL']}</p>
             <p><strong>Precio:</strong> ${fila['PRECIO VENTA']}</p>
         </div>
         <!-- Botón para volver a la tienda -->
-    <br><br>
-    <a href="../index.html">Volver a la tienda</a>
+        <br><br>
+        <a href="../index.html">Volver a la tienda</a>
     </body>
     </html>
     """
+    
     # Guardar el archivo HTML
     with open(f'catálogo/{fila["TÍTULO"].replace(" ", "_")}.html', 'w', encoding='utf-8') as f:
         f.write(html_content)
-        
+
 # Suponiendo que las columnas se llaman 'TÍTULO', 'PRECIO VENTA' e 'IMAGEN'
 libros = df[['TÍTULO', 'PRECIO VENTA']].values.tolist()
-        
+
 # Imagen predeterminada si no hay imagen disponible
 imagen_predeterminada = 'agua_sabajo_logo.png'  
 
@@ -71,16 +88,12 @@ for titulo, precio in libros:
     # Reemplazar espacios por guiones bajos en el título para el enlace
     titulo_enlace = titulo.replace(' ', '_')
     
-    # Usar la imagen predeterminada si no hay imagen
-   # if pd.isna(imagen) or imagen.strip() == '':
-    #    imagen = imagen_predeterminada
-    
     productos_html += f'''
         <div class="producto">
             <a href="catálogo/{titulo_enlace}.html">
-                <img src="img/{titulo_enlace}.jpg" alt="Portada {titulo} "width="50" height="50">
-            </a></br>
-            <span>{titulo} </br> <strong>${precio}</strong></span></br>
+                <img src="img/{titulo_enlace}.jpg" alt="Portada {titulo}" width="50" height="50">
+            </a><br>
+            <span>{titulo}<br> <strong>${precio}</strong></span><br>
             <button onclick="agregarAlCarrito('{titulo}', {precio})">Añadir</button>
         </div>\n
     '''
@@ -98,3 +111,4 @@ with open('index.html', 'w', encoding='utf-8') as f:
     f.write(new_content)
 
 print("El contenido del div 'productos' en index.html ha sido actualizado.")
+
