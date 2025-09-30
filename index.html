@@ -10,7 +10,7 @@
         header img { height: 100px; }
         .producto { display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
         .producto img { width: 150px; height: 200px; margin-right: 10px; cursor: pointer; }
-        .carrito, .formulario { text-align: right; margin-top: 20px; border-top: 2px solid #000; border-bottom: 2px solid #000; padding-bottom: 20px; padding-top: 10px; padding-right: 50px; }
+        .carrito, .formulario {line-height: 2;text-align: right; margin-top: 20px; border-top: 2px solid #000; border-bottom: 2px solid #000; padding-bottom: 20px; padding-top: 10px; padding-right: 50px; }
         footer { margin-top: 20px; background-color: #333; color: white; padding: 10px; }
         h1 {font-family: Atkinson Hyperlegible, sans-serif; margin: 20px; text-align: center; font-size: xx-large;}
         button { background-color: #333; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px; }
@@ -31,7 +31,8 @@
     <!-- Carrito -->
     <div class="carrito">
         <h2>Carrito de Compras</h2>
-        <ul id="listaCarrito"></ul>
+        <ul style="list-style-type:none; line-height: 3; background: powderblue; 
+        padding: 20px;"id="listaCarrito"></ul>
         <p>Total: $<span id="total">0</span></p>
         <button onclick="scrollToContacto()">Realizar pedido</button>
     </div>
@@ -203,7 +204,7 @@
 
         <h3>Detalles del Pedido:</h3>
         <div id="detallesPedido"></div> <!-- Contenedor para mostrar los detalles del pedido -->
-
+		<h3>Total: $<span id="totalVisible">0</span></h3>
         <button type="submit">Enviar Pedido</button>
     </form>
 </div>
@@ -251,6 +252,7 @@
         let lista = document.getElementById("listaCarrito");
         let totalElemento = document.getElementById("total");
         let detallesPedido = document.getElementById("detallesPedido");
+        let totalVisible = document.getElementById("totalVisible"); // Nuevo elemento para mostrar el total
 
         if (!lista || !totalElemento || !detallesPedido) {
             console.error("Elementos del carrito no encontrados.");
@@ -274,8 +276,8 @@
             // Agregar detalles al contenedor del formulario
             detallesPedido.innerHTML += `${item.nombre} - ${item.precio} (Cantidad: ${item.cantidad})<br>`;
         });
-
-        totalElemento.textContent = total;
+		totalVisible.textContent = total; // Actualiza el total visible en el formulario
+        totalElemento.textContent = total; // Actualiza el total en la interfaz
 
         // Actualizar el campo oculto del formulario con el contenido del carrito en formato de texto
         const carritoTexto = carrito.map(item => `${item.nombre} - ${item.precio} (Cantidad: ${item.cantidad})`).join(', ');
