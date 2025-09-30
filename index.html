@@ -3,47 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Librería Online</title>
+    <title>Librería Ecopedagógica Aguas Abajo</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; text-align: center; }
+        body { font-family: Atkinson Hyperlegible, sans-serif; margin: 20px; text-align: center; }
         header { background-color: #333; color: white; padding: 20px; }
-        header img { height: 50px; }
+        header img { height: 100px; }
         .producto { display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
         .producto img { width: 150px; height: 200px; margin-right: 10px; cursor: pointer; }
         .carrito, .formulario { margin-top: 20px; border-top: 2px solid #000; padding-top: 10px; }
-        #mensajeGracias { display: none; background-color: #f4f4f4; padding: 20px; border-radius: 10px; }
         footer { margin-top: 20px; background-color: #333; color: white; padding: 10px; }
+        h1 {font-family: Atkinson Hyperlegible, sans-serif; margin: 20px; text-align: center; font-size: xx-large;}
         button { background-color: #333; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px; }
         button:hover { background-color: #555; }
     </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 </head>
-<body>
 
+<body>
     <!-- Banner con logo -->
-    <header>
-        <img src="logo.png" alt="Logo Librería">
-        <h1>Librería Online</h1>
+    <header style="background-image: url('aguas.jpg'); height: 200px; background-size: cover; background-position: center;">
+        <img src="agua_sabajo_logo.png" alt="Logo Librería">
+        <h1>Librería Ecopedagógica Aguas Abajo</h1>
     </header>
 
     <!-- Productos -->
     <div id="productos">
-        <div class="producto">
-            <a href="libro1.html">
-                <img src="portada_libro1.jpg" alt="Portada Libro 1">
-            </a>
-            <span>Libro 1 - $10</span>
-            <button onclick="agregarAlCarrito('Libro 1', 10)">Añadir</button>
-        </div>
+	<div class="productos">	
+		
+	<style>
+    .productos {
+        border: 0px solid #ccc;
+        padding: 10px;
+        margin: 10px;
+        display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+        text-align: center;
+    }
+        .producto {
+        border: 0px solid #ccc;
+        padding: 10px;
+        margin: 10px;
+        display: block;
+		width: 100%;
+        text-align: center;
+    }
+    .producto img {
+        max-width: 100%; /* Asegura que la imagen no exceda el ancho del contenedor */
+        height: auto;
+    }
+    .producto span {
+        display: block; /* Asegura que el título y el precio estén en una nueva línea */
+        margin: 10px 0; /* Espacio entre el título y el botón */
+    }
+    .carrito{
+		text-align: right;
+	}
+	</style>
+	
+	<!-- INICIO -->
 
         <div class="producto">
-            <a href="libro2.html">
-                <img src="portada_libro2.jpg" alt="Portada Libro 2">
-            </a>
-            <span>Libro 2 - $15</span>
-            <button onclick="agregarAlCarrito('Libro 2', 15)">Añadir</button>
+            <a href="catálogo/Ecología_y_medio_ambiente.html">
+                <img src="img/Ecología_y_medio_ambiente.jpg" alt="Portada Ecología y medio ambiente "width="50" height="50">
+            </a></br>
+            <span>Ecología y medio ambiente </br> <strong>$10000</strong></span></br>
+            <button onclick="agregarAlCarrito('Ecología y medio ambiente', 10000)">Añadir</button>
         </div>
-    </div>
 
+    
+        <div class="producto">
+            <a href="catálogo/Bibliodiversidad:_Un_manifiesto_para_las_editoriales_independientes.html">
+                <img src="img/Bibliodiversidad:_Un_manifiesto_para_las_editoriales_independientes.jpg" alt="Portada Bibliodiversidad: Un manifiesto para las editoriales independientes "width="50" height="50">
+            </a></br>
+            <span>Bibliodiversidad: Un manifiesto para las editoriales independientes </br> <strong>$6000</strong></span></br>
+            <button onclick="agregarAlCarrito('Bibliodiversidad: Un manifiesto para las editoriales independientes', 6000)">Añadir</button>
+        </div>
+
+    
+        <div class="producto">
+            <a href="catálogo/Biblioteca_y_Vida_.html">
+                <img src="img/Biblioteca_y_Vida_.jpg" alt="Portada Biblioteca y Vida  "width="50" height="50">
+            </a></br>
+            <span>Biblioteca y Vida  </br> <strong>$6000</strong></span></br>
+            <button onclick="agregarAlCarrito('Biblioteca y Vida ', 6000)">Añadir</button>
+        </div>
+
+    
+        <div class="producto">
+            <a href="catálogo/La_Antártica:_Ecología,_Recursos_y_Sustentabilidad.html">
+                <img src="img/La_Antártica:_Ecología,_Recursos_y_Sustentabilidad.jpg" alt="Portada La Antártica: Ecología, Recursos y Sustentabilidad "width="50" height="50">
+            </a></br>
+            <span>La Antártica: Ecología, Recursos y Sustentabilidad </br> <strong>$4000</strong></span></br>
+            <button onclick="agregarAlCarrito('La Antártica: Ecología, Recursos y Sustentabilidad', 4000)">Añadir</button>
+        </div>
+
+    
+        <div class="producto">
+            <a href="catálogo/Las_cuevas_y_sus_habitantes.html">
+                <img src="img/Las_cuevas_y_sus_habitantes.jpg" alt="Portada Las cuevas y sus habitantes "width="50" height="50">
+            </a></br>
+            <span>Las cuevas y sus habitantes </br> <strong>$6000</strong></span></br>
+            <button onclick="agregarAlCarrito('Las cuevas y sus habitantes', 6000)">Añadir</button>
+        </div>
+
+    
+        <div class="producto">
+            <a href="catálogo/Ecología_y_Evolución_de_interacciones_planta-animal.html">
+                <img src="img/Ecología_y_Evolución_de_interacciones_planta-animal.jpg" alt="Portada Ecología y Evolución de interacciones planta-animal "width="50" height="50">
+            </a></br>
+            <span>Ecología y Evolución de interacciones planta-animal </br> <strong>$10000</strong></span></br>
+            <button onclick="agregarAlCarrito('Ecología y Evolución de interacciones planta-animal', 10000)">Añadir</button>
+        </div>
+
+    
+        <div class="producto">
+            <a href="catálogo/Radiografia_a_los_murciélagos_en_Chile.html">
+                <img src="img/Radiografia_a_los_murciélagos_en_Chile.jpg" alt="Portada Radiografia a los murciélagos en Chile "width="50" height="50">
+            </a></br>
+            <span>Radiografia a los murciélagos en Chile </br> <strong>$6000</strong></span></br>
+            <button onclick="agregarAlCarrito('Radiografia a los murciélagos en Chile', 6000)">Añadir</button>
+        </div>
+
+    
+        <div class="producto">
+            <a href="catálogo/Mujeres_científicas_en_Chile._.html">
+                <img src="img/Mujeres_científicas_en_Chile._.jpg" alt="Portada Mujeres científicas en Chile.  "width="50" height="50">
+            </a></br>
+            <span>Mujeres científicas en Chile.  </br> <strong>$8000</strong></span></br>
+            <button onclick="agregarAlCarrito('Mujeres científicas en Chile. ', 8000)">Añadir</button>
+        </div>
+
+    
+        <div class="producto">
+            <a href="catálogo/Tierra_en_Peligro_.html">
+                <img src="img/Tierra_en_Peligro_.jpg" alt="Portada Tierra en Peligro  "width="50" height="50">
+            </a></br>
+            <span>Tierra en Peligro  </br> <strong>$10000</strong></span></br>
+            <button onclick="agregarAlCarrito('Tierra en Peligro ', 10000)">Añadir</button>
+        </div>
+
+    
+        <div class="producto">
+            <a href="catálogo/El_Libro_de_la_Ecología.html">
+                <img src="img/El_Libro_de_la_Ecología.jpg" alt="Portada El Libro de la Ecología "width="50" height="50">
+            </a></br>
+            <span>El Libro de la Ecología </br> <strong>$10000</strong></span></br>
+            <button onclick="agregarAlCarrito('El Libro de la Ecología', 10000)">Añadir</button>
+        </div>
+
+    
+        <div class="producto">
+            <a href="catálogo/Biodiversidad_Para_Jovenes_Diversos.html">
+                <img src="img/Biodiversidad_Para_Jovenes_Diversos.jpg" alt="Portada Biodiversidad Para Jovenes Diversos "width="50" height="50">
+            </a></br>
+            <span>Biodiversidad Para Jovenes Diversos </br> <strong>$8000</strong></span></br>
+            <button onclick="agregarAlCarrito('Biodiversidad Para Jovenes Diversos', 8000)">Añadir</button>
+        </div>
+
+    
+        <div class="producto">
+            <a href="catálogo/Una_guía_para_la_enseñanza_de_la_historia_ambiental.html">
+                <img src="img/Una_guía_para_la_enseñanza_de_la_historia_ambiental.jpg" alt="Portada Una guía para la enseñanza de la historia ambiental "width="50" height="50">
+            </a></br>
+            <span>Una guía para la enseñanza de la historia ambiental </br> <strong>$10000</strong></span></br>
+            <button onclick="agregarAlCarrito('Una guía para la enseñanza de la historia ambiental', 10000)">Añadir</button>
+        </div>
+
+    <!-- FIN -->
+    
+	</div>
+	
     <!-- Carrito -->
     <div class="carrito">
         <h2>Carrito de Compras</h2>
@@ -54,96 +185,92 @@
     <!-- Formulario de Contacto -->
     <div class="formulario">
         <h2>Formulario de Contacto</h2>
-        <form id="formularioContacto">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required><br><br>
+        <form action="https://formsubmit.co/dcolleoniv@gmail.com" method="POST">
+    <input type="hidden" name="_next" value="gracias.html"> <!-- Redirección a página de agradecimiento -->
+    <input type="hidden" name="_captcha" value="false"> <!-- Desactiva el captcha automático -->
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required><br><br>
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required><br><br>
 
-            <label for="resumen">Resumen del Pedido:</label><br>
-            <textarea id="resumen" name="mensaje" rows="8" style="width: 100%; height: 150px;" readonly></textarea><br><br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
 
-            <button type="submit">Enviar Pedido</button>
-        </form>
+    <label for="mensaje">Mensaje:</label><br>
+    <textarea id="mensaje" name="mensaje" rows="4" required></textarea><br><br>
 
-        <!-- Mensaje de agradecimiento oculto inicialmente -->
-        <div id="mensajeGracias">
-            <h2>¡Gracias por tu pedido!</h2>
-            <p>Hemos recibido tu solicitud y nos pondremos en contacto contigo lo antes posible.</p>
-            <p>Revisa tu correo para más detalles sobre el pago y el envío.</p>
-            <br>
-            <button onclick="window.location.reload();">Volver a la tienda</button>
-        </div>
+    <button type="submit">Enviar Pedido</button>
+</form>
+
     </div>
 
     <!-- Footer -->
     <footer>
         <p>&copy; 2025 Librería Online - Todos los derechos reservados.</p>
     </footer>
+    
+<script>
+    let carrito = [];
+    let total = 0;
 
-    <script>
-        let carrito = [];
-        let total = 0;
-
-        function agregarAlCarrito(nombre, precio) {
-            let libroExistente = carrito.find(item => item.nombre === nombre);
-
-            if (libroExistente) {
-                libroExistente.cantidad += 1; // Incrementa la cantidad del mismo libro
-            } else {
-                carrito.push({ nombre, precio, cantidad: 1 }); // Agrega el libro con cantidad inicial
-            }
-
+    function agregarAlCarrito(nombre, precio) {
+        // Verificar si el producto ya está en el carrito
+        const itemExistente = carrito.find(item => item.nombre === nombre);
+        
+        if (itemExistente) {
+            // Si existe, incrementar la cantidad y el total
+            itemExistente.cantidad++;
             total += precio;
+        } else {
+            // Si no existe, agregarlo al carrito
+            carrito.push({ nombre, precio, cantidad: 1 });
+            total += precio;
+        }
+        actualizarCarrito();
+    }
+
+    function eliminarDelCarrito(nombre) {
+        // Buscar el producto en el carrito
+        const itemIndex = carrito.findIndex(item => item.nombre === nombre);
+        
+        if (itemIndex !== -1) {
+            // Reducir la cantidad o eliminar el producto
+            if (carrito[itemIndex].cantidad > 1) {
+                carrito[itemIndex].cantidad--;
+                total -= carrito[itemIndex].precio;
+            } else {
+                total -= carrito[itemIndex].precio;
+                carrito.splice(itemIndex, 1); // Eliminar el producto
+            }
             actualizarCarrito();
         }
+    }
 
-        function actualizarCarrito() {
-            let lista = document.getElementById("listaCarrito");
-            let totalElemento = document.getElementById("total");
-            let resumenPedido = document.getElementById("resumen");
+    function actualizarCarrito() {
+        let lista = document.getElementById("listaCarrito");
+        let totalElemento = document.getElementById("total");
 
-            if (!lista || !totalElemento || !resumenPedido) {
-                console.error("Elementos del carrito no encontrados.");
-                return;
-            }
-
-            lista.innerHTML = "";
-            let resumenTexto = "Resumen del Pedido:\n";
-
-            carrito.forEach(item => {
-                let li = document.createElement("li");
-                li.textContent = `${item.nombre} x${item.cantidad} - $${item.precio * item.cantidad}`;
-                lista.appendChild(li);
-                resumenTexto += `${item.nombre} x${item.cantidad} - $${item.precio * item.cantidad}\n`;
-            });
-
-            totalElemento.textContent = total;
-            resumenTexto += `\nTotal: $${total}`;
-            resumenPedido.value = resumenTexto;
+        if (!lista || !totalElemento) {
+            console.error("Elementos del carrito no encontrados.");
+            return;
         }
 
-        document.getElementById("formularioContacto").addEventListener("submit", function(event) {
-            event.preventDefault();
-
-            fetch("https://formsubmit.co/dcolleoniv@gmail.com", {
-                method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: new URLSearchParams(new FormData(this))
-            }).then(response => {
-                document.getElementById("formularioContacto").style.display = "none";
-                document.getElementById("mensajeGracias").style.display = "block";
-
-                // 🆕 Reiniciar carrito después de enviar el pedido
-                carrito = [];
-                total = 0;
-                actualizarCarrito();
-            }).catch(error => {
-                alert("Hubo un error al enviar el pedido, intenta nuevamente.");
-            });
+        lista.innerHTML = "";
+        carrito.forEach(item => {
+            let li = document.createElement("li");
+            li.textContent = `${item.nombre} - ${item.precio} (Cantidad: ${item.cantidad})`;
+            
+            // Crear botón de eliminar
+            let botonEliminar = document.createElement("button");
+            botonEliminar.textContent = "Eliminar";
+            botonEliminar.onclick = () => eliminarDelCarrito(item.nombre);
+            li.appendChild(botonEliminar);
+            
+            lista.appendChild(li);
         });
-    </script>
+
+        totalElemento.textContent = total;
+    }
+</script>
 
 </body>
 </html>
