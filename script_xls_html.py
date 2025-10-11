@@ -5,82 +5,81 @@ import re
 # Cargar el archivo XLS
 df = pd.read_excel('LIBRERÍA_AGUAS_ABAJO.xlsx')
 
-# Seleccionar las columnas necesarias
-df = df[['TÍTULO', 'AUTOR', 'AÑO', 'ISBN', 'EDITORIAL', 'PRECIO VENTA']]
+# Seleccionar las columnas necesarias y manejar NAN
+df = df[['TÍTULO', 'AUTOR', 'AÑO', 'ISBN', 'EDITORIAL', 'PRECIO VENTA']].fillna({
+    'ISBN': "No disponible",
+    'AÑO': "No disponible"
+})
 
 # Crear una carpeta para las páginas
 os.makedirs('catálogo', exist_ok=True)
 
 # Generar las páginas HTML
-for index, fila in df.iterrows():
-    # Manejo de ISBN
-    isbn_value = fila['ISBN']
-    if pd.isna(isbn_value):
-        display_isbn = "No disponible"  # O cualquier valor que desees mostrar
-    else:
-        display_isbn = str(int(isbn_value))  # Convertir a entero y luego a string
+for index, row in df.iterrows():
+    title = row['TÍTULO'].replace(' ', '_')
+    isbn_value = str(int(row['ISBN'])) if row['ISBN'] != "No disponible" else "No disponible"
+    year_value = str(int(row['AÑO'])) if row['AÑO'] != "No disponible" else "No disponible"
 
-    # Manejo de AÑO
-    año_value = fila['AÑO']
-    if pd.isna(año_value):
-        display_año = "No disponible"  # O cualquier valor que desees mostrar
-    else:
-        display_año = str(int(año_value))  # Convertir a entero y luego a string
-
-    print(f"Fila {index}: ISBN={isbn_value}, AÑO={año_value}")
-    
     html_content = f"""
     <html>
     <head>
-        <title>{fila['TÍTULO']}</title>
+        <title>{row['TÍTULO']}</title>
         <style>
-            body {{
-                font-family: Atkinson hyperlegible, sans-serif;
-                text-align: center;
-                margin: 20px;
-                padding: 20px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                background-color: #f9f9f9;
-            }}
-            h1 {{
-                color: #333;
-            }}
-            .info {{
-                margin-top: 20px;
-                padding: 10px;
-                border: 1px solid #ddd;
-                border-radius: 5px;
-                background-color: #fff;
-            }}
+            body {{ font-family: Atkinson hyperlegible, sans-serif; text-align: center; margin: 20px; padding: 20px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9; }}
+            h1 {{ color: #333; }}
+            .info {{ margin-top: 20px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #fff; }}
+            #modal {{ position: fixed; z-index: 1000; left: 0; top: 0; width: 60%; height: auto; overflow: auto; background-color: rgba(0, 0, 0, 0.8); display: none; }}
+            #modal img {{ display: block; margin: auto; max-width: 80%; max-height: 80%; }}
         </style>
     </head>
     <body>
-        <img src="../img/{fila['TÍTULO'].replace(" ", "_")}.jpg" width="300">
-        <h1>{fila['TÍTULO']}</h1>
-        <div class="info">
-            <p><strong>Autor:</strong> {fila['AUTOR']}</p>
-            <p><strong>Año:</strong> {año_value}</p> 
-            <p><strong>ISBN:</strong> {isbn_value}</p>
-            <p><strong>Editorial:</strong> {fila['EDITORIAL']}</p>
-            <p><strong>Precio:</strong> ${fila['PRECIO VENTA']}</p>
+        <h1>{row['TÍTULO']}</h1>
+        <div>
+            <img id="{title}_cover" src="../img/{title}_cover.jpg" width="300" alt="Portada" style="cursor:pointer;">
+            <img id="{title}_back" src="../img/{title}_back.jpg" width="300" alt="Contraportada" style="cursor:pointer;">
+            <img id="{title}_in" src="../img/{title}_in.jpg" width="300" alt="Interior" style="cursor:pointer;">
         </div>
-        <!-- Botón para volver a la tienda -->
-        <br><br>
+        <div id="modal">
+            <span id="cerrar" style="cursor:pointer; color: white;">&times;</span>
+            <img id="imgModal" src="" style="width:100%;">
+        </div>
+        <div class="info">
+            <p><strong>Autor:</strong> {row['AUTOR']}</p>
+            <p><strong>Año:</strong> {year_value}</p> 
+            <p><strong>ISBN:</strong> {isbn_value}</
+                        <p><strong>Editorial:</strong> {row['EDITORIAL']}</p>
+            <p><strong>Precio:</strong> ${row['PRECIO VENTA']}</p>
+        </div>
         <a href="../index.html">Volver a la tienda</a>
+        <script>
+            document.querySelectorAll('img[id$="_cover"], img[id$="_back"], img[id$="_in"]').forEach(img => {{
+                img.onclick = function() {{
+                    document.getElementById('imgModal').src = this.src;
+                    document.getElementById('modal').style.display = "block";
+                }};
+            }});
+            document.getElementById('cerrar').onclick = function() {{
+                document.getElementById('modal').style.display = "none";
+            }};
+            window.onclick = function(event) {{
+                if (event.target == document.getElementById('modal')) {{
+                    document.getElementById('modal').style.display = "none";
+                }}
+            }};
+        </script>
     </body>
     </html>
     """
-    
+
     # Guardar el archivo HTML
-    with open(f'catálogo/{fila["TÍTULO"].replace(" ", "_")}.html', 'w', encoding='utf-8') as f:
+    with open(f'catálogo/{title}.html', 'w', encoding='utf-8') as f:
         f.write(html_content)
 
-# Suponiendo que las columnas se llaman 'TÍTULO', 'PRECIO VENTA' e 'IMAGEN'
+# Suponiendo que las columnas se llaman 'TÍTULO', 'PRECIO VENTA' 
 libros = df[['TÍTULO', 'PRECIO VENTA']].values.tolist()
 
 # Imagen predeterminada si no hay imagen disponible
-imagen_predeterminada = 'agua_sabajo_logo.png'  
+imagen_predeterminada = 'agua_sabajo_logo.png'
 
 # Generar el contenido HTML para los productos
 productos_html = ''
@@ -91,7 +90,7 @@ for titulo, precio in libros:
     productos_html += f'''
         <div class="producto">
             <a href="catálogo/{titulo_enlace}.html">
-                <img src="img/{titulo_enlace}.jpg" alt="Portada {titulo}" width="50" height="50">
+                <img src="img/{titulo_enlace}_cover.jpg" alt="Portada {titulo}" width="50" height="50">
             </a><br>
             <span>{titulo}<br> <strong>${precio}</strong></span><br>
             <button onclick="agregarAlCarrito('{titulo}', {precio})">Añadir</button>
