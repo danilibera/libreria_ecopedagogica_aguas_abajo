@@ -6,14 +6,14 @@
     <title>Librería Ecopedagógica Aguas Abajo</title>
     <style>
         body { font-family: Atkinson Hyperlegible, sans-serif; margin: 20px; text-align: center; }
-        header { background-color: #333; color: white; padding: 20px; text-align: left;}
-        header img { margin-top: 10px; margin-left: 10px; height: 100px; }
+        header { background-color: #333; color: white; padding: 20px; }
+        header img { height: 100px; }
         footer img { height: 100px; }
         .productos { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; margin-bottom: 10px; }
         .producto img { width: 150px; height: 200px; margin-right: 10px; cursor: pointer; }
-        .carrito, .formulario {line-height: 1.5;text-align: right; margin-top: 20px; border-top: 2px solid #000; border-bottom: 2px solid #000; padding-bottom: 20px; padding-top: 10px; padding-right: 10px; padding-left: 10px; }
-        footer { margin-top: 20px; background-color: hsl(150, 30%, 80%); color: black; padding: 10px; }
-        h1 {font-family: Atkinson Hyperlegible, sans-serif; margin: 10px; text-align: left; font-size: xx-large;text-shadow: 1px 1px 2px black;}
+        .carrito, .formulario {line-height: 1.5;text-align: right; margin-top: 20px; border-top: 2px solid #000; border-bottom: 2px solid #000; padding-bottom: 20px; padding-top: 10px; padding-right: 50px; padding-left: 50px; }
+        footer { margin-top: 20px; background-color: #333; color: white; padding: 10px; }
+        h1 {font-family: Atkinson Hyperlegible, sans-serif; margin: 20px; text-align: left; font-size: xx-large;}
         button { background-color: #333; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px; }
         button:hover { background-color: #555; }
     </style>
@@ -32,8 +32,8 @@
     <!-- Carrito -->
     <div class="carrito">
         <h2>Carrito de Compras</h2>
-        <ul style="list-style-type:none; line-height: 2.5; background: hsl(150, 30%, 80%); 
-        padding: 5px;"id="listaCarrito"></ul>
+        <ul style="list-style-type:none; line-height: 3; background: hsl(150, 30%, 80%); 
+        padding: 20px;"id="listaCarrito"></ul>
         <p>Total: <h3>$<span id="total">0</span><h3></p>
         <button onclick="scrollToContacto()">Realizar pedido</button>
     </div>
@@ -70,7 +70,7 @@
 
         <div class="producto">
             <a href="catálogo/Ecología_y_medio_ambiente.html">
-                <img src="img/Ecología_y_medio_ambiente.jpg" alt="Portada Ecología y medio ambiente" width="50" height="50">
+                <img src="img/Ecología_y_medio_ambiente_cover.jpg" alt="Portada Ecología y medio ambiente" width="50" height="50">
             </a><br>
             <span>Ecología y medio ambiente<br> <strong>$10000</strong></span><br>
             <button onclick="agregarAlCarrito('Ecología y medio ambiente', 10000)">Añadir</button>
@@ -79,7 +79,7 @@
     
         <div class="producto">
             <a href="catálogo/Bibliodiversidad:_Un_manifiesto_para_las_editoriales_independientes.html">
-                <img src="img/Bibliodiversidad:_Un_manifiesto_para_las_editoriales_independientes.jpg" alt="Portada Bibliodiversidad: Un manifiesto para las editoriales independientes" width="50" height="50">
+                <img src="img/Bibliodiversidad:_Un_manifiesto_para_las_editoriales_independientes_cover.jpg" alt="Portada Bibliodiversidad: Un manifiesto para las editoriales independientes" width="50" height="50">
             </a><br>
             <span>Bibliodiversidad: Un manifiesto para las editoriales independientes<br> <strong>$6000</strong></span><br>
             <button onclick="agregarAlCarrito('Bibliodiversidad: Un manifiesto para las editoriales independientes', 6000)">Añadir</button>
@@ -87,17 +87,17 @@
 
     
         <div class="producto">
-            <a href="catálogo/Biblioteca_y_Vida_.html">
-                <img src="img/Biblioteca_y_Vida_.jpg" alt="Portada Biblioteca y Vida " width="50" height="50">
+            <a href="catálogo/Biblioteca_y_Vida.html">
+                <img src="img/Biblioteca_y_Vida_cover.jpg" alt="Portada Biblioteca y Vida" width="50" height="50">
             </a><br>
-            <span>Biblioteca y Vida <br> <strong>$6000</strong></span><br>
-            <button onclick="agregarAlCarrito('Biblioteca y Vida ', 6000)">Añadir</button>
+            <span>Biblioteca y Vida<br> <strong>$6000</strong></span><br>
+            <button onclick="agregarAlCarrito('Biblioteca y Vida', 6000)">Añadir</button>
         </div>
 
     
         <div class="producto">
             <a href="catálogo/La_Antártica:_Ecología,_Recursos_y_Sustentabilidad.html">
-                <img src="img/La_Antártica:_Ecología,_Recursos_y_Sustentabilidad.jpg" alt="Portada La Antártica: Ecología, Recursos y Sustentabilidad" width="50" height="50">
+                <img src="img/La_Antártica:_Ecología,_Recursos_y_Sustentabilidad_cover.jpg" alt="Portada La Antártica: Ecología, Recursos y Sustentabilidad" width="50" height="50">
             </a><br>
             <span>La Antártica: Ecología, Recursos y Sustentabilidad<br> <strong>$4000</strong></span><br>
             <button onclick="agregarAlCarrito('La Antártica: Ecología, Recursos y Sustentabilidad', 4000)">Añadir</button>
@@ -106,7 +106,7 @@
     
         <div class="producto">
             <a href="catálogo/Las_cuevas_y_sus_habitantes.html">
-                <img src="img/Las_cuevas_y_sus_habitantes.jpg" alt="Portada Las cuevas y sus habitantes" width="50" height="50">
+                <img src="img/Las_cuevas_y_sus_habitantes_cover.jpg" alt="Portada Las cuevas y sus habitantes" width="50" height="50">
             </a><br>
             <span>Las cuevas y sus habitantes<br> <strong>$6000</strong></span><br>
             <button onclick="agregarAlCarrito('Las cuevas y sus habitantes', 6000)">Añadir</button>
@@ -115,7 +115,7 @@
     
         <div class="producto">
             <a href="catálogo/Ecología_y_Evolución_de_interacciones_planta-animal.html">
-                <img src="img/Ecología_y_Evolución_de_interacciones_planta-animal.jpg" alt="Portada Ecología y Evolución de interacciones planta-animal" width="50" height="50">
+                <img src="img/Ecología_y_Evolución_de_interacciones_planta-animal_cover.jpg" alt="Portada Ecología y Evolución de interacciones planta-animal" width="50" height="50">
             </a><br>
             <span>Ecología y Evolución de interacciones planta-animal<br> <strong>$10000</strong></span><br>
             <button onclick="agregarAlCarrito('Ecología y Evolución de interacciones planta-animal', 10000)">Añadir</button>
@@ -124,7 +124,7 @@
     
         <div class="producto">
             <a href="catálogo/Radiografia_a_los_murciélagos_en_Chile.html">
-                <img src="img/Radiografia_a_los_murciélagos_en_Chile.jpg" alt="Portada Radiografia a los murciélagos en Chile" width="50" height="50">
+                <img src="img/Radiografia_a_los_murciélagos_en_Chile_cover.jpg" alt="Portada Radiografia a los murciélagos en Chile" width="50" height="50">
             </a><br>
             <span>Radiografia a los murciélagos en Chile<br> <strong>$6000</strong></span><br>
             <button onclick="agregarAlCarrito('Radiografia a los murciélagos en Chile', 6000)">Añadir</button>
@@ -132,26 +132,26 @@
 
     
         <div class="producto">
-            <a href="catálogo/Mujeres_científicas_en_Chile._.html">
-                <img src="img/Mujeres_científicas_en_Chile._.jpg" alt="Portada Mujeres científicas en Chile. " width="50" height="50">
+            <a href="catálogo/Mujeres_científicas_en_Chile.html">
+                <img src="img/Mujeres_científicas_en_Chile_cover.jpg" alt="Portada Mujeres científicas en Chile" width="50" height="50">
             </a><br>
-            <span>Mujeres científicas en Chile. <br> <strong>$8000</strong></span><br>
-            <button onclick="agregarAlCarrito('Mujeres científicas en Chile. ', 8000)">Añadir</button>
+            <span>Mujeres científicas en Chile<br> <strong>$8000</strong></span><br>
+            <button onclick="agregarAlCarrito('Mujeres científicas en Chile', 8000)">Añadir</button>
         </div>
 
     
         <div class="producto">
-            <a href="catálogo/Tierra_en_Peligro_.html">
-                <img src="img/Tierra_en_Peligro_.jpg" alt="Portada Tierra en Peligro " width="50" height="50">
+            <a href="catálogo/Tierra_en_Peligro.html">
+                <img src="img/Tierra_en_Peligro_cover.jpg" alt="Portada Tierra en Peligro" width="50" height="50">
             </a><br>
-            <span>Tierra en Peligro <br> <strong>$10000</strong></span><br>
-            <button onclick="agregarAlCarrito('Tierra en Peligro ', 10000)">Añadir</button>
+            <span>Tierra en Peligro<br> <strong>$10000</strong></span><br>
+            <button onclick="agregarAlCarrito('Tierra en Peligro', 10000)">Añadir</button>
         </div>
 
     
         <div class="producto">
             <a href="catálogo/El_Libro_de_la_Ecología.html">
-                <img src="img/El_Libro_de_la_Ecología.jpg" alt="Portada El Libro de la Ecología" width="50" height="50">
+                <img src="img/El_Libro_de_la_Ecología_cover.jpg" alt="Portada El Libro de la Ecología" width="50" height="50">
             </a><br>
             <span>El Libro de la Ecología<br> <strong>$10000</strong></span><br>
             <button onclick="agregarAlCarrito('El Libro de la Ecología', 10000)">Añadir</button>
@@ -160,7 +160,7 @@
     
         <div class="producto">
             <a href="catálogo/Biodiversidad_Para_Jovenes_Diversos.html">
-                <img src="img/Biodiversidad_Para_Jovenes_Diversos.jpg" alt="Portada Biodiversidad Para Jovenes Diversos" width="50" height="50">
+                <img src="img/Biodiversidad_Para_Jovenes_Diversos_cover.jpg" alt="Portada Biodiversidad Para Jovenes Diversos" width="50" height="50">
             </a><br>
             <span>Biodiversidad Para Jovenes Diversos<br> <strong>$8000</strong></span><br>
             <button onclick="agregarAlCarrito('Biodiversidad Para Jovenes Diversos', 8000)">Añadir</button>
@@ -169,7 +169,7 @@
     
         <div class="producto">
             <a href="catálogo/Una_guía_para_la_enseñanza_de_la_historia_ambiental.html">
-                <img src="img/Una_guía_para_la_enseñanza_de_la_historia_ambiental.jpg" alt="Portada Una guía para la enseñanza de la historia ambiental" width="50" height="50">
+                <img src="img/Una_guía_para_la_enseñanza_de_la_historia_ambiental_cover.jpg" alt="Portada Una guía para la enseñanza de la historia ambiental" width="50" height="50">
             </a><br>
             <span>Una guía para la enseñanza de la historia ambiental<br> <strong>$10000</strong></span><br>
             <button onclick="agregarAlCarrito('Una guía para la enseñanza de la historia ambiental', 10000)">Añadir</button>
@@ -261,7 +261,7 @@
 
         carrito.forEach(item => {
             let li = document.createElement("li");
-            li.textContent = `${item.nombre}\n ${item.precio} \n(Cantidad: ${item.cantidad})    `;
+            li.textContent = `${item.nombre} - ${item.precio} (Cantidad: ${item.cantidad})    `;
             
             let botonEliminar = document.createElement("button");
             botonEliminar.textContent = "Eliminar";
@@ -277,7 +277,7 @@
         totalElemento.textContent = total; // Actualiza el total en la interfaz
 
         // Actualizar el campo oculto del formulario con el contenido del carrito en formato de texto
-        const carritoTexto = carrito.map(item => `${item.nombre} - <strong>${item.precio}</strong> (Cantidad: ${item.cantidad})`).join('\n');
+        const carritoTexto = carrito.map(item => `${item.nombre} - ${item.precio} (Cantidad: ${item.cantidad})`).join(', ');
         document.getElementById("carrito").value = carritoTexto;
         
         // Actualizar el campo oculto del total
