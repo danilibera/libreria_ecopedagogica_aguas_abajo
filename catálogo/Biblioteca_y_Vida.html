@@ -1,50 +1,96 @@
 
     <html>
     <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Biblioteca y Vida</title>
-        <style>
-            body { font-family: Atkinson hyperlegible, sans-serif; text-align: center; margin: 20px; padding: 20px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9; }
-            h1 { color: #333; }
-            .info { margin-top: 20px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #fff; }
-            #modal { position: fixed; z-index: 1000; left: 0; top: 0; width: 60%; height: auto; overflow: auto; background-color: rgba(0, 0, 0, 0.8); display: none; }
-            #modal img { display: block; margin: auto; max-width: 80%; max-height: 80%; }
-        </style>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+        <style> body { font-family: 'Atkinson Hyperlegible', sans-serif; }</style>
     </head>
     <body>
-        <h1>Biblioteca y Vida</h1>
-        <div>
-            <img id="Biblioteca_y_Vida_cover" src="../img/Biblioteca_y_Vida_cover.jpg" width="300" alt="Portada" style="cursor:pointer;">
-            <img id="Biblioteca_y_Vida_back" src="../img/Biblioteca_y_Vida_back.jpg" width="300" alt="Contraportada" style="cursor:pointer;">
-            <img id="Biblioteca_y_Vida_in" src="../img/Biblioteca_y_Vida_in.jpg" width="300" alt="Interior" style="cursor:pointer;">
+        <div class="container">
+            <h1 class="text-center">Biblioteca y Vida</h1>
+            <div class="text-center">
+                <img id="Biblioteca_y_Vida_cover" src="../img/Biblioteca_y_Vida_cover.jpg" width="300" alt="Portada" style="cursor:pointer;">
+                <img id="Biblioteca_y_Vida_back" src="../img/Biblioteca_y_Vida_back.jpg" width="300" alt="Contraportada" style="cursor:pointer;">
+                <img id="Biblioteca_y_Vida_in" src="../img/Biblioteca_y_Vida_in.jpg" width="300" alt="Interior" style="cursor:pointer;">
+            </div>
+            <div class="info text-center">
+                <p><strong>Autor:</strong> Geneviève Patte</p>
+                <p><strong>Año:</strong> 2015</p>
+                <p><strong>ISBN:</strong> 9789562141475</p>
+                <p><strong>Editorial:</strong> Ediciones Universidad de Valparaiso</p>
+                <p><strong>Precio:</strong> $6000</p>
+            </div>
+            <a href="../index.html" class="btn btn-primary">Volver a la tienda</a>
         </div>
-        <div id="modal">
-            <span id="cerrar" style="cursor:pointer; color: white;">&times;</span>
-            <img id="imgModal" src="" style="width:100%;">
+
+        <!-- Modal -->
+        <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitle">Imagen</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <img id="imgModal" src="" class="img-fluid" alt="Imagen del libro">
+                    </div>
+                    <div class="modal-footer">
+                        <button id="prevBtn" class="btn btn-secondary" style="display:none;">Anterior</button>
+                        <button id="nextBtn" class="btn btn-secondary" style="display:none;">Siguiente</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="info">
-            <p><strong>Autor:</strong> Geneviève Patte</p>
-            <p><strong>Año:</strong> 2015</p> 
-            <p><strong>ISBN:</strong> 9789562141475</
-                        <p><strong>Editorial:</strong> Ediciones Universidad de Valparaiso</p>
-            <p><strong>Precio:</strong> $6000</p>
-        </div>
-        <a href="../index.html">Volver a la tienda</a>
-        <script>
-            document.querySelectorAll('img[id$="_cover"], img[id$="_back"], img[id$="_in"]').forEach(img => {
-                img.onclick = function() {
-                    document.getElementById('imgModal').src = this.src;
-                    document.getElementById('modal').style.display = "block";
-                };
-            });
-            document.getElementById('cerrar').onclick = function() {
-                document.getElementById('modal').style.display = "none";
-            };
-            window.onclick = function(event) {
-                if (event.target == document.getElementById('modal')) {
-                    document.getElementById('modal').style.display = "none";
-                }
-            };
-        </script>
+        
+<script>
+    let currentIndex = 0; 
+    const images = []; 
+
+    // Llenar el array images cuando se asignan los manejadores de eventos
+    document.querySelectorAll('img[id$="_cover"], img[id$="_back"], img[id$="_in"]').forEach((img, index) => {
+        images.push(img.src);  // Agregar cada imagen al array en la inicialización
+        img.onclick = function() {
+            currentIndex = index; 
+            document.getElementById('imgModal').src = this.src; 
+            $('#imageModal').modal('show'); 
+            checkButtons(); 
+        };
+    });
+
+    document.getElementById('prevBtn').onclick = function() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateModalImage();
+        }
+    };
+
+    document.getElementById('nextBtn').onclick = function() {
+        if (currentIndex < images.length - 1) {
+            currentIndex++;
+            updateModalImage();
+        }
+    };
+
+    function updateModalImage() {
+        document.getElementById('imgModal').src = images[currentIndex]; 
+        checkButtons(); 
+    }
+
+    function checkButtons() {
+        document.getElementById('prevBtn').style.display = currentIndex === 0 ? 'none' : 'inline'; 
+        document.getElementById('nextBtn').style.display = currentIndex === images.length - 1 ? 'none' : 'inline'; 
+    }
+</script>
+
     </body>
     </html>
     
