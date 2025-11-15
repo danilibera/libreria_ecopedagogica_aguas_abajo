@@ -337,7 +337,6 @@ function checkButtons() {
     document.getElementById('nextBtn').style.display = currentIndex === images.length - 1 ? 'none' : 'inline';
 }
 
-// Enviar formulario de contacto
 document.getElementById('formContacto').addEventListener('submit', function(event) {
     event.preventDefault(); // Evitar el envío por defecto del formulario
     const formData = new FormData(this);
@@ -346,17 +345,23 @@ document.getElementById('formContacto').addEventListener('submit', function(even
     fetch(this.action, {
         method: 'POST',
         body: formData,
-    }).then(() => {
-               alert('Formulario enviado. ¡Gracias por su compra!');
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        alert('Formulario enviado. ¡Gracias por su compra!');
         this.reset(); // Reinicia el formulario
         carrito = []; // Limpia el carrito después del envío
         total = 0; // Reinicia el total
         actualizarCarrito(); // Actualiza la visualización del carrito
-    }).catch(error => {
+    })
+    .catch(error => {
         alert('Hubo un problema al enviar el formulario. Por favor, inténtelo de nuevo.');
         console.error('Error:', error);
     });
 });
+
 
 // Función para desplazarse hasta el contacto
 function scrollToContacto() {
