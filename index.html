@@ -350,14 +350,14 @@ document.getElementById('formContacto').addEventListener('submit', function(even
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        alert('Formulario enviado. ¡Gracias por su pedido! Recibirás un correo con detalles de pago y opciones de envío');
+        alert('Formulario enviado. ¡Gracias por tu pedido! Recibirás un correo con detalles de pago y opciones de envío');
         this.reset(); // Reinicia el formulario
         carrito = []; // Limpia el carrito después del envío
         total = 0; // Reinicia el total
         actualizarCarrito(); // Actualiza la visualización del carrito
     })
     .catch(error => {
-        alert('Hubo un problema al enviar el formulario. Por favor, inténtelo de nuevo.');
+        alert('Hubo un problema al enviar el formulario. Por favor, inténtalo de nuevo.');
         console.error('Error:', error);
     });
 });
