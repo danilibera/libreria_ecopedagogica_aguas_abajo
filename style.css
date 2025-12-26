@@ -1,0 +1,92 @@
+/* ===== Tipografía y elementos generales ===== */
+body {
+  font-family: 'Atkinson Hyperlegible', sans-serif;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+/* ===== Encabezado y pie de página ===== */
+header {
+  background-image: url('aguas.png');
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  padding: 40px;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+/* ===== Productos ===== */
+.producto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.producto img {
+  width: 100%;
+  height: auto;
+  max-width: 150px;
+  cursor: pointer;
+}
+
+/* ===== Carrito y formulario ===== */
+.carrito,
+.formulario {
+  background: hsl(150, 30%, 80%);
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+  text-align: right;
+}
+
+.formulario input,
+.formulario textarea {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* ===== Botones ===== */
+button {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+/* ===== Modal ===== */
+#modalDescription {
+  max-height: 300px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+
+/* ===== Sección "Acerca de" ===== */
+.acerca_de {
+  padding: 40px;          /* espacio interno alrededor del texto */
+  margin: 20px auto;      /* opcional: separa del resto de la página */
+  max-width: 900px;       /* opcional: limita el ancho para que no se pegue a los bordes */
+  line-height: 1.6;       /* mejora la legibilidad del texto */
+}
+
