@@ -2,7 +2,7 @@
 
 Librería virtual del Refugio Aguas Abajo
 
-    Ofrecemos libros inclusivos y especializados que abordan diversas temáticas relacionadas con los ecosistemas y sus habitantes. 
+    	Ofrecemos libros inclusivos y especializados que abordan diversas temáticas relacionadas con los ecosistemas y sus habitantes. 
 		Nuestro catálogo está compuesto por lecturas aptas para estudiantes, docentes, investigadores y cualquier persona interesada en aprender, 
 		enseñar y contribuir a la protección de la biodiversidad.
 
