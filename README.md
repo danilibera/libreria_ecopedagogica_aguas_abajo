@@ -12,7 +12,7 @@ Librería virtual del Refugio Aguas Abajo
 		de las prácticas lectoras y editoriales.
 
 
-		¿Qué es la ecopedagogía?</
+		¿Qué es la ecopedagogía?
 
 		Es un enfoque educativo que nos invita a aprender de los ciclos naturales que sustentan la vida.
 
