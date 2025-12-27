@@ -89,8 +89,10 @@ function mostrarInfo(el) {
     document.getElementById('prevBtn').onclick = prevImage;
     document.getElementById('nextBtn').onclick = nextImage;
 
-    // Mostrar modal (Bootstrap)
-    $('#imageModal').modal('show');
+    // Mostrar modal con Bootstrap 5 (sin jQuery)
+    const modalElement = document.getElementById('imageModal');
+    const modal = new bootstrap.Modal(modalElement);
+    modal.show();
 }
 
 function updateModalImage() {
